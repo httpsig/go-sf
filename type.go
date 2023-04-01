@@ -30,7 +30,7 @@ func (l List) Encode() string {
 }
 
 // Dict is an ordered map of key-value pairs.
-type Dict []Pair
+type Dict []*Pair
 
 // Encode serializes the dictionary.
 func (d Dict) Encode() string {
@@ -52,7 +52,7 @@ func (d Dict) Add(k string, v Member) Dict {
 			return d
 		}
 	}
-	d = append(d, Pair{k, v})
+	d = append(d, &Pair{k, v})
 	return d
 }
 
@@ -92,7 +92,7 @@ type Member interface {
 // InnerList is an array of zero or more items having zero or more associated
 // parameters.
 type InnerList struct {
-	Items  []Item
+	Items  []*Item
 	Params ParamList
 }
 
@@ -120,7 +120,7 @@ func (i *Item) Encode() string {
 }
 
 // ParamList is an array of zero or more parameters.
-type ParamList []Param
+type ParamList []*Param
 
 // Add adds a new parameter to the list and returns the modified list.
 func (l ParamList) Add(k string, v BareItem) ParamList {
@@ -130,7 +130,7 @@ func (l ParamList) Add(k string, v BareItem) ParamList {
 			return l
 		}
 	}
-	l = append(l, Param{k, v})
+	l = append(l, &Param{k, v})
 	return l
 }
 

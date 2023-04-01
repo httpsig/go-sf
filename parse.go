@@ -152,7 +152,7 @@ func parseInnerList(input []byte, pos int) (*InnerList, int, error) {
 	}
 	pos++
 	var (
-		items []Item
+		items []*Item
 		it    *Item
 		err   error
 	)
@@ -169,7 +169,7 @@ func parseInnerList(input []byte, pos int) (*InnerList, int, error) {
 		if err != nil {
 			return nil, pos, err
 		}
-		items = append(items, *it)
+		items = append(items, it)
 	}
 	p, pos, err := parseParams(input, pos)
 	if err != nil {
