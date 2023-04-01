@@ -75,8 +75,8 @@ type Pair struct {
 // Encode serializes the key-value pair.
 func (p *Pair) Encode() string {
 	if it, isItem := p.Value.(*Item); isItem {
-		if v, isBool := it.BareItem.(Bool); isBool && bool(v) {
-			return p.Key + it.Parameters.Encode()
+		if v, isBool := it.Bare.(Bool); isBool && bool(v) {
+			return p.Key + it.Params.Encode()
 		}
 	}
 	return p.Key + "=" + p.Value.Encode()
@@ -92,31 +92,31 @@ type Member interface {
 // InnerList is an array of zero or more items having zero or more associated
 // parameters.
 type InnerList struct {
-	Items      []Item
-	Parameters ParamList
+	Items  []Item
+	Params ParamList
 }
 
 // Encode serializes the inner list.
 func (i *InnerList) Encode() string {
 	if len(i.Items) == 0 {
-		return "()" + i.Parameters.Encode()
+		return "()" + i.Params.Encode()
 	}
 	items := make([]string, 0, len(i.Items))
 	for _, it := range i.Items {
 		items = append(items, it.Encode())
 	}
-	return "(" + strings.Join(items, " ") + ")" + i.Parameters.Encode()
+	return "(" + strings.Join(items, " ") + ")" + i.Params.Encode()
 }
 
 // Item is a bare item having zero or more associated parameters.
 type Item struct {
-	BareItem   BareItem
-	Parameters ParamList
+	Bare   BareItem
+	Params ParamList
 }
 
 // Encode serializes the item.
 func (i *Item) Encode() string {
-	return i.BareItem.Encode() + i.Parameters.Encode()
+	return i.Bare.Encode() + i.Params.Encode()
 }
 
 // ParamList is an array of zero or more parameters.
