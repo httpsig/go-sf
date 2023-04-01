@@ -56,6 +56,16 @@ func (d Dict) Add(k string, v Member) Dict {
 	return d
 }
 
+// Get retrieves a value from the dictionary by its key.
+func (d Dict) Get(k string) Member {
+	for _, p := range d {
+		if p.Key == k {
+			return p.Value
+		}
+	}
+	return nil
+}
+
 // Pair is a key-value pair in a dictionary.
 type Pair struct {
 	Key   string
@@ -122,6 +132,16 @@ func (l ParamList) Add(k string, v BareItem) ParamList {
 	}
 	l = append(l, Param{k, v})
 	return l
+}
+
+// Get retrieves a parameter value from the list by its key.
+func (l ParamList) Get(k string) BareItem {
+	for _, p := range l {
+		if p.Key == k {
+			return p.Value
+		}
+	}
+	return nil
 }
 
 // Encode serializes the parameter list.
