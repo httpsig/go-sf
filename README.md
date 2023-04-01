@@ -1,13 +1,13 @@
 # Go-SF
 
-Go-SF is a Go implementation of IETF "Structured Field Values for HTTP" standard ([RFC8941](https://www.rfc-editor.org/rfc/rfc8941.html)).
+Go-SF is a Go implementation of IETF [RFC8941](https://www.rfc-editor.org/rfc/rfc8941.html), "Structured Field Values for HTTP".
 
 ## License
 
 ```
 MIT License
 
-Copyright (c) 2023 HTTP Message Signatures
+Copyright (c) 2023 Ali AslRousta <aslrousta@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
